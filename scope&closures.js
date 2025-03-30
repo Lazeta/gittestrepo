@@ -166,3 +166,117 @@
 // b(); // 1 вызов функции
 // var b = 'под колпачком 1';
 // Ответ: [Function: b] 'шарик находится' [Function: b] [Function: b] 'под колпачком 2'
+
+
+
+
+// Замыкание - это функция способная запоминать свою внешнюю (лексическую) область видимости и сохранять доступ к переменным даже после того как функция завершила выполнение. 
+// Как работает замыкание - когда функция создаётся в JS, то она захватывает переменные из scope, даже после завершения функции замыкание хранит ссылку на эти переменные.
+// Зачем нам замыкания? Функциональное программирование (Currying & FP), Инкапсуляция данных (Data Encapsulation), Сохранение состояния (State Persistence), Обработка событий (Event Handlers).
+// Инкапсуляция данных - мы скрываем переменные от внешнего кода, создавая приватные свойства.
+// Функциональное программирование (Currying & FP) - Киррирование (преобразование функции от многих аргументов в цепочку функций от одного аргумента). Создание функций с предустановленными параметрами (частичное применение).
+// Сохранение состояния (State Persistence) - позволяет функции помнить данные между вызовами без глобальных переменных.
+// Обработка событий (Event Handlers)
+
+// function outerFunction() {
+//     let counter = 0;
+
+//     function innerFunction() {
+//         counter++;
+//         return counter;
+//     }
+
+//     return innerFunction;
+// }
+
+// const newFunction = outerFunction();
+// console.log(newFunction()); // 1
+// мы получаем доступ лишь к значению переменной но не к самой переменной.
+
+
+
+
+// использование замыкания с приватными переменными
+// function createCounter() {
+//     let _count = 0; // conditional privacy
+
+//     return {
+//         increment: function(amount) {
+//             _count = _count + amount
+//             return _count;
+//         },
+//         decrement: function(amount) {
+//             _count = _count - amount;
+//             return _count;
+//         },
+//         getCounter: function() {
+//             return _count;
+//         }
+//     };
+// }
+// const counter = createCounter();
+// console.log(counter.decrement(1));
+// console.log(counter.increment(3));
+// console.log(counter.getCounter());
+
+
+
+
+// способы улучшить замыкание:
+// 1)явный сброс ссылок : при помощи null
+    // function createHeavyClosure() {
+    //     const bigData = new Array(1000000).fill("Данные"); // Большие данные
+    //     return () => {
+    //         console.log(bigData.length);
+    //     };
+    // }
+
+    // const closure = createHeavyClosure();
+    // closure(); // Используем замыкание
+
+    // Когда замыкание больше не нужно
+    // closure = null; // сбрасываем ссылку, разрешая сборку мусора (GC)
+// 2)использование WeakRef (слабая ссылка)
+// 3)Избегание ненужных замыканий
+// 4)Использование генераторов (function*).
+    // function* counter() {
+    //     let _count = 0;
+    //     while (true) {
+    //         yield _count++; // yield используют для приостановки выполнения функции и возврата значения
+    //     }
+    // }
+    // const gen = counter();
+    // console.log(gen.next().value); // 0
+    // console.log(gen.next().value); // 1
+// 5)Осторожность с DOM-элементами
+
+
+
+// class Counter {
+//     constructor(element) {
+//         // слабая ссылка на какой-то элемент
+//         this.ref = new WeakRef(element);
+//         this.start()
+//     }
+// }
+
+
+
+
+// const weakMap = new WeakMap();
+
+// function createClosure() {
+//   const key = {}; // Объект как ключ
+//   const bigData = new Array(1000000).fill("Данные");
+
+//   weakMap.set(key, bigData); // Слабая ссылка на bigData
+
+//   return () => {
+//     console.log(weakMap.get(key));
+//   };
+// }
+
+// const closure = createClosure();
+// closure();
+
+// Когда key удаляется (например, выходит из scope), bigData тоже может быть собрана GC.
