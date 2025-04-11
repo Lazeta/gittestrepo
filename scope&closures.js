@@ -280,3 +280,16 @@
 // closure();
 
 // Когда key удаляется (например, выходит из scope), bigData тоже может быть собрана GC.
+
+
+
+
+// function foo(){
+//     var variable = 'global';
+
+//     setTimeout(() => {
+//         console.log(variable)
+//     })
+// };
+
+// foo()
