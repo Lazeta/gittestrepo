@@ -293,3 +293,29 @@
 // };
 
 // foo()
+
+
+
+
+// Как можно использовать замыкания для создания сложных решений без подсказок? Приведите пример.
+// function createCounter() {
+//     let count = 0; //приватная переменная
+//     return {
+//         increment: function() {
+//             count++;
+//             console.log("Текущее значение:", count)
+//         },
+//         decrement: function() {
+//             count--;
+//             console.log("Текущее значение:", count)
+//         },
+//         getCount: function() {
+//             return count;
+//         }
+//     }   
+// }
+// const counter = createCounter();
+// counter.increment(); // Текущее значение: 1
+// counter.increment(); // Текущее значение: 2
+// counter.decrement(); // Текущее значение: 1
+// console.log("Финальное значение:", counter.getCount()); // Финальное значение: 1

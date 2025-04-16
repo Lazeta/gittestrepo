@@ -56,3 +56,6 @@ function concatString(separator, ...strings){
 }
 
 console.log(concatString("_", "a", "b", "c", "wwww"))
+
+
+
