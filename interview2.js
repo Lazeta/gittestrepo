@@ -1,67 +1,90 @@
-"use strict";
+// "use strict";
 // ________________________________________________________
-const str = "hello"
+// const str = "hello"
+// str = 'H'
+// console.log(str)
 
-str[0] = 'H'
+// // 7 примитивных (number, bigint, string, boolean, null, undefined, symbol) типов данных и 1 ссылочные типы данных представленных как объект
+// console.log(typeof NaN) // 'number'
+// console.log(typeof undefined) // undefined
+// console.log(typeof null) // object
+// console.log(typeof Data) // function
+// console.log(typeof new Object()) // object
+// console.log(typeof new Function()) // function
+// console.log(typeof Object()) // object
 
-console.log(str) //Hello
+// функция что ничего 
+// const a = [];
+// const v = [1,2,3];
+// v.forEach((current, i, arr) => {
+//   // a[i] = (current * 2);
+//   arr[2] = 6
+// })
+// console.log(v)
+
+// const a = { a: 1, b: 'String', c: { d: "Hui" }};
+// const b = { a: 1, b: 'String', c: { d: "Hui" }};
+
+// const a = [1,2,3];
+// a = [4,5,6];
+// console.log(a)
 // ________________________________________________________
-console.log(true + false); // 1
-console.log(12 / "6"); // 2
-console.log("number" + 15 + 3); // number153
-console.log(15 + 3 + "number"); // 18number
-console.log([1] > null); // true
-console.log("foo" + + "bar"); // foobar
-console.log('true' == true); // true
-console.log(false == 'false'); // false
-console.log(null == ""); // true
-console.log(!!"false" == !!"true"); // true
-console.log(['x'] == 'x'); // true
-console.log([] + null + 1); // SyntaxError
-console.log(0 || "0" && {}); // {}
-console.log([1,2,3] == [1,2,3]); // true
-// ________________________________________________________
-console.log(foo)
+// console.log(true + false); // 1
+// console.log(12 / "6"); // 2
+// console.log("number" + 15 + 3); // number153
+// console.log(15 + 3 + "number"); // 18number
+// console.log([1] > null); // true
+// console.log("foo" + + "bar"); // fooNaN
+// console.log('true' == true); // true 
+// console.log(false == 'false'); // true
+// console.log(null == ""); // true
+// console.log(!!"false" == !!"true"); // true
+// console.log(['x'] == 'x'); // true
+// console.log([] + null + 1); // null1
+// console.log(0 || "0" && {}); // {}
+// console.log([1,2,3] == [1,2,3]); // false
+// // ________________________________________________________
+// console.log(foo)
 
-const foo = () => {}
-// ________________________________________________________
-function makeCounter() {
-  let count = 0;
+// const foo = () => {}
+// // ________________________________________________________
+// function makeCounter() {
+//   let count = 0;
 
-  return function() {
-    return count++;
-  };
-}
+//   return function() {
+//     return count++;
+//   };
+// }
 
-let counter = makeCounter();
-let counter2 = makeCounter();
+// let counter = makeCounter();
+// let counter2 = makeCounter();
 
-console.log( counter() ); // 1
-console.log( counter() ); // 2
+// console.log( counter() ); // 1
+// console.log( counter() ); // 2
 
-console.log( counter2() ); // 1
-console.log( counter2() ); // 2
-// ________________________________________________________
-function foo() {
-  console.log(this.bar);
-}
+// console.log( counter2() ); // 1
+// console.log( counter2() ); // 2
+// // ________________________________________________________
+// function foo() {
+//   console.log(this.bar);
+// }
 
-var bar = "global";
+// var bar = "global";
 
-var obj1 = {
-  bar: "obj1",
-  foo: foo
-};
+// var obj1 = {
+//   bar: "obj1",
+//   foo: foo
+// };
 
-var obj2 = {
-  bar: "obj2"
-};
+// var obj2 = {
+//   bar: "obj2"
+// };
 
-foo(); // undefined
-obj1.foo(); // "obj1"
-foo.call(obj2); // "obj2"
-new foo(); // undefined
-// ________________________________________________________
+// foo(); // undefined
+// obj1.foo(); // "obj1"
+// foo.call(obj2); // "obj2"
+// new foo(); // undefined
+// // ________________________________________________________
 var p = Promise.resolve(4);
 
 p
@@ -81,27 +104,34 @@ p
     console.log(data);
   });
 
-// ________________________________________________________
-console.log(1); // 1
+// 4
+// err
+// undefined
+// ok
 
-Promise.resolve()
-  .then(() => console.log(2)) // 3
-  .then(() => console.log("promise 1")); // 5
+// // ________________________________________________________
+// console.log(1);
 
-setTimeout(() => {
-  console.log(3); // 6
-  Promise.resolve().then(() => console.log("promise inside setTimeout")); // 7
-}, 0);
+// Promise.resolve()
+//   .then(() => console.log(2))
+//   .then(() => console.log("promise 1"));
 
-Promise.resolve()
-  .then(() => console.log("promise 2")) // 4
-  .then(() => setTimeout(() => console.log(4), 0)); // 8
+// setTimeout(() => {
+//   console.log(3);
+//   Promise.resolve().then(() => console.log("promise inside setTimeout"));
+// }, 0);
 
-console.log(5); // 2
-// Синхронные операции выполняются первыми 1\2
+// Promise.resolve()
+//   .then(() => console.log("promise 2"))
+//   .then(() => setTimeout(() => console.log(4), 0));
 
+// console.log(5);
 
-
-
-// Теория к повторению и изучению:
-// HTTP/1 , HTTP/2, HTTP/3 в чём разница , особенности.
+// 1
+// 5
+// 2
+// promise 2
+// promise 1
+// 3
+// promise inside setTimeout
+// 4
